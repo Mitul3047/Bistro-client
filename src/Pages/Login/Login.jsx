@@ -1,7 +1,7 @@
 import { useContext, useEffect, useState } from 'react';
 import { loadCaptchaEnginge, LoadCanvasTemplate,  validateCaptcha } from 'react-simple-captcha';
 import { AuthContext } from '../../providers/AuthProvider';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import Swal from 'sweetalert2';
 
 const Login = () => {
@@ -10,8 +10,10 @@ const Login = () => {
     const [disabled, setDisabled] = useState(true);
 
     const {signIn} = useContext(AuthContext);
+    const navigate =useNavigate();
+    const location = useLocation();
 
-
+    const from = location.state?.form?.pathname || "/";
     useEffect( () => {
         loadCaptchaEnginge(6);
     }, [])
@@ -43,6 +45,7 @@ const Login = () => {
                 `
               }
             });
+            navigate(from, {replace: true });
         })
     }
 
@@ -95,7 +98,8 @@ const Login = () => {
           {/* <button className="btn btn-primary">Login</button> */}
           <input disabled={disabled} className="btn btn-primary" type="submit" value="Login" />
         </div>
-        <p ><small>New Here? <span className='btn-link'><Link to={'/signUp'}>Create an account</Link></span></small></p>
+        <p ><small>New Here? <span className='btn-link
+        '><Link to={'/signUp'}>Create an account</Link></span></small></p>
       </form>
       
     </div>
