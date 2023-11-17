@@ -8,7 +8,7 @@ import Swal from 'sweetalert2'
 const SignUp = () => {
 
     const { register, handleSubmit, reset, formState: { errors } } = useForm();
-    const { createUser, updateUserProfile, logOut } = useContext(AuthContext);
+    const { createUser, updateUserProfile } = useContext(AuthContext);
     const navigate = useNavigate();
 
     const onSubmit = data => {
@@ -28,10 +28,7 @@ const SignUp = () => {
                             showConfirmButton: false,
                             timer: 1500
                         });
-                        logOut()
-                        .then(() => { })
-                        .then(error => console.error(error))
-                        navigate('/login');
+                        navigate('/');
 
                     })
                     .catch(error => console.log(error))
@@ -93,9 +90,8 @@ const SignUp = () => {
                             <div className="form-control mt-6">
                                 <input className="btn btn-primary" type="submit" value="Sign Up" />
                             </div>
-                            <p><small>Already have an account <Link to="/login">Login</Link></small></p>
                         </form>
-                        
+                        <p><small>Already have an account <Link to="/login">Login</Link></small></p>
                     </div>
                 </div>
             </div>
