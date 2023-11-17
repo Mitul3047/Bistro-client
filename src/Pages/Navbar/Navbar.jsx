@@ -1,6 +1,7 @@
 import { useContext } from "react";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../providers/AuthProvider";
+import{ FaShoppingCart} from "react-icons/fa"
 
 
 const Navbar = () => {
@@ -60,11 +61,20 @@ const Navbar = () => {
           </ul>
         </div>
         <div className="navbar-end">
+          <div className="mr-2">
+            <Link to={'/'}>
+              <button className="flex justify-between items-center btn-ghost gap-4">
+              <FaShoppingCart></FaShoppingCart>
+                <div className="badge badge-sm badge-secondary  ">+0</div>
+              </button>
+            </Link>
+          </div>
           {/* <a className="btn">Button</a> */}
           {
             user ? <div className="dropdown dropdown-end mr-5">
               <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
                 <div className="w-12 rounded-full">
+
                   <img alt="Tailwind CSS Navbar component" src={user?.photoURL
 } />
                 </div>
